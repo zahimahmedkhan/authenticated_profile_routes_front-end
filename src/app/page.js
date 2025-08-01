@@ -1,27 +1,21 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { 
-  LayoutDashboard, 
-  Users, 
-  Search, 
-  Bell, 
-  Menu, 
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import chart from '../../public/chart.jpg';
+import Link from "next/link";
+import Image from "next/image";
+import { LayoutDashboard, Users, Search, Bell, Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import chart from "../../public/chart.jpg";
 
 export default function DashboardPage() {
   const activities = Array(5).fill({
     title: "New project created",
     description: "Project 'Dashboard Design' was created",
-    time: "2 hours ago"
+    time: "2 hours ago",
   });
 
   const projects = Array(4).fill({
     name: "Dashboard Design",
     team: [1, 2],
     status: "Active",
-    progress: 25
+    progress: 25,
   });
 
   return (
@@ -55,7 +49,10 @@ export default function DashboardPage() {
         <header className="bg-white border-b rounded-lg border-gray-200 sticky top-0 z-30">
           <div className="flex items-center justify-between h-16 px-4">
             <div className="flex items-center rounded-lg">
-              <Link href="#" className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 mr-2">
+              <Link
+                href="#"
+                className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 mr-2"
+              >
                 <Menu className="w-6 h-6" />
               </Link>
               <h1 className="text-lg font-semibold">Dashboard</h1>
@@ -70,14 +67,14 @@ export default function DashboardPage() {
                 />
               </div>
             </div>
-            <div className='flex items-center space-x-2'>
-                <Button variant="outline" className='bg-gray-700 text-white'>
-                  <Link href="/auth/login">login</Link>
-                 </Button>
-                 <Button variant="outline" className='bg-gray-700 text-white'>
-                  <Link href="/auth/signup">signup</Link>
-                 </Button>
-              </div>
+            <div className="flex items-center space-x-2">
+              <Button variant="outline" className="bg-gray-700 text-white">
+                <Link href="/auth/login">login</Link>
+              </Button>
+              <Button variant="outline" className="bg-gray-700 text-white">
+                <Link href="/auth/signup">signup</Link>
+              </Button>
+            </div>
           </div>
         </header>
 
@@ -108,14 +105,13 @@ export default function DashboardPage() {
                 </select>
               </div>
               <div className="h-64 sm:h-80 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-center">
-                {/* <p className="text-gray-400">Chart Placeholder</p> */}
                 <Image
-                              width={300}
-                              height={200}
-                              className="w-full h-full rounded border-2 border-gray-700 object-cover"
-                              src={chart}
-                              alt="revenue chart"
-                            />
+                  width={300}
+                  height={200}
+                  className="w-full h-full rounded border-2 border-gray-700 object-cover"
+                  src={chart}
+                  alt="revenue chart"
+                />
               </div>
             </div>
 
@@ -133,7 +129,9 @@ export default function DashboardPage() {
                       <p className="text-xs text-gray-500 mt-1">
                         {activity.description}
                       </p>
-                      <p className="text-xs text-gray-400 mt-1">{activity.time}</p>
+                      <p className="text-xs text-gray-400 mt-1">
+                        {activity.time}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -145,7 +143,10 @@ export default function DashboardPage() {
           <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
               <h2 className="text-lg font-semibold">Recent Projects</h2>
-              <Link href="#" className="text-sm text-gray-600 hover:text-gray-800 font-medium">
+              <Link
+                href="#"
+                className="text-sm text-gray-600 hover:text-gray-800 font-medium"
+              >
                 View All
               </Link>
             </div>
@@ -181,7 +182,9 @@ export default function DashboardPage() {
                               width={28}
                               height={28}
                               className="w-7 h-7 rounded-full border-2 border-white"
-                              src={`https://randomuser.me/api/portraits/men/${avatar + 30}.jpg`}
+                              src={`https://randomuser.me/api/portraits/men/${
+                                avatar + 30
+                              }.jpg`}
                               alt="Team member"
                             />
                           ))}
@@ -197,10 +200,14 @@ export default function DashboardPage() {
                           <div className="w-16 sm:w-24 bg-gray-200 rounded-full h-2">
                             <div
                               className="bg-gray-600 h-2 rounded-full"
-                              style={{ width: `${project.progress * (index + 1)}%` }}
+                              style={{
+                                width: `${project.progress * (index + 1)}%`,
+                              }}
                             ></div>
                           </div>
-                          <span className="text-xs text-gray-500">{project.progress * (index + 1)}%</span>
+                          <span className="text-xs text-gray-500">
+                            {project.progress * (index + 1)}%
+                          </span>
                         </div>
                       </td>
                     </tr>

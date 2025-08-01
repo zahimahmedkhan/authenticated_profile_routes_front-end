@@ -53,7 +53,7 @@ export default function SignupForm() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5000/auth/signup",
+        "https://authenticated-profile-routes-back-e.vercel.app/auth/signup",
         {
           firstName: values.firstName,
           lastName: values.lastName,
@@ -235,9 +235,9 @@ export default function SignupForm() {
                               onChange={(e) => setInput(e.target.value)}
                               placeholder="Add a skill"
                             />
-                            <button type="button" onClick={addSkill}>
+                            <Button type="button" onClick={addSkill}>
                               Add
-                            </button>
+                            </Button>
                           </div>
                           <div className="mt-2 flex flex-wrap gap-2">
                             {(field.value || []).map((skill, idx) => (

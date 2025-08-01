@@ -69,7 +69,7 @@ export default function ProfilePage() {
   const onSubmit = async (data) => {
     try {
       await axios.patch(
-        "http://localhost:5000/profile/updateUserProfile",
+        "https://authenticated-profile-routes-back-e.vercel.app/profile/updateUserProfile",
         data,
         {
           withCredentials: true,
@@ -84,7 +84,7 @@ export default function ProfilePage() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/auth/logout",
+        "https://authenticated-profile-routes-back-e.vercel.app/auth/logout",
         {},
         {
           withCredentials: true,
