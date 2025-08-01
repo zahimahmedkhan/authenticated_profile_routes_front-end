@@ -41,7 +41,7 @@ export default function LoginForm() {
   const onSubmit = async (values) => {
     setIsLoading(true);
     try {
-      const response = await axios.post( "https://authenticated-profile-routes-back-e.vercel.app/auth/login",   {
+      const response = await axios.post( "https://profile-routes-backend.vercel.app/auth/login",   {
         email: values.email,
         password: values.password,
       },

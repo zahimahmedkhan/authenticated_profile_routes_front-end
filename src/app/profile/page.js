@@ -31,7 +31,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/profile/userProfile", {
+      .get("https://profile-routes-backend.vercel.app/profile/userProfile", {
         withCredentials: true,
       })
       .then((res) => {
@@ -69,7 +69,7 @@ export default function ProfilePage() {
   const onSubmit = async (data) => {
     try {
       await axios.patch(
-        "https://authenticated-profile-routes-back-e.vercel.app/profile/updateUserProfile",
+        "https://profile-routes-backend.vercel.app/profile/updateUserProfile",
         data,
         {
           withCredentials: true,
@@ -84,7 +84,7 @@ export default function ProfilePage() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "https://authenticated-profile-routes-back-e.vercel.app/auth/logout",
+        "https://profile-routes-backend.vercel.app/auth/logout",
         {},
         {
           withCredentials: true,

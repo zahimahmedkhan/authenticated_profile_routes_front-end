@@ -53,7 +53,7 @@ export default function SignupForm() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://authenticated-profile-routes-back-e.vercel.app/auth/signup",
+        "https://profile-routes-backend.vercel.app/auth/signup",
         {
           firstName: values.firstName,
           lastName: values.lastName,
