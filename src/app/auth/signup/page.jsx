@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import axios from "axios";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -20,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Eye, EyeOff, X } from "lucide-react";
-import { auth } from "@/lib/auth";
+import { router } from "next/router";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 3 characters"),
@@ -48,22 +49,35 @@ export default function SignupForm() {
       skills: [],
     },
   });
-  
   const onSubmit = async (values) => {
     setIsLoading(true);
     try {
-      const response = await auth.signup(values);
+      const response = await axios.post(
+        "https://profile-routes-backend.vercel.app/auth/signup",
+        {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          password: values.password,
+          role: values.role,
+          bio: values.bio,
+          skills: values.skills,
+        },
+        {
+          withCredentials: true,
+        }
+      );
 
-      if (response) {
-        toast.success("Account created successfully!");
+      if (!response.status === 200) {
+        toast.error("Error creating account");
+      } else {
         router.push("/profile");
       }
     } catch (error) {
-      console.error("Signup error:", error);
-      if (error.response?.status === 409) {
-        toast.error(error.response.data.message || "User already exists");
+      if (error.status === 409) {
+        toast.error(error.response.data.message || "Signup failed");
       } else {
-        toast.error(error.response?.data?.message || "Signup failed");
+        toast.error(error.response.data || "Signup failed");
       }
     } finally {
       setIsLoading(false);

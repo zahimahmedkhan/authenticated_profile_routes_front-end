@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
@@ -23,17 +24,18 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { MailIcon } from "lucide-react";
 import { toast } from "react-toastify";
-import { auth } from "@/lib/auth";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const data = await auth.getUserProfile();
-        
+    axios
+      .get("https://profile-routes-backend.vercel.app/profile/userProfile", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        const data = res.data;
         if (typeof data === "object") {
           setUser(data);
         } else {
@@ -42,14 +44,11 @@ export default function ProfilePage() {
             setUser(JSON.parse(matched[1]));
           }
         }
-      } catch (err) {
-        console.error("Profile fetch error:", err);
-        toast.error("Error fetching profile");
+      })
+      .catch((err) => {
+        toast.error(err.response || "Error fetching profile");
         router.push("/auth/login");
-      }
-    };
-
-    fetchUserProfile();
+      });
   }, [router]);
 
   const form = useForm();
@@ -69,21 +68,32 @@ export default function ProfilePage() {
 
   const onSubmit = async (data) => {
     try {
-      await auth.updateUserProfile(data);
+      await axios.patch(
+        "https://profile-routes-backend.vercel.app/profile/updateUserProfile",
+        data,
+        {
+          withCredentials: true,
+        }
+      );
       toast.success("Profile updated successfully");
     } catch (err) {
-      console.error("Profile update error:", err);
       toast.error(err.response?.data?.message || "Failed to update profile");
     }
   };
 
   const handleLogout = async () => {
     try {
-      await auth.logout();
-    } catch (error) {
-      console.error("Logout error:", error);
+      await axios.post(
+        "https://profile-routes-backend.vercel.app/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+    } catch {
       toast.error("Failed to logout");
     }
+    router.push("/auth/login");
   };
 
   if (!user){

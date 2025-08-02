@@ -5,10 +5,11 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import axios from "axios";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, X } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -40,14 +41,18 @@ export default function LoginForm() {
   const onSubmit = async (values) => {
     setIsLoading(true);
     try {
-      const response = await auth.login(values.email, values.password);
+      const response = await axios.post( "https://profile-routes-backend.vercel.app/auth/login",   {
+        email: values.email,
+        password: values.password,
+      },
+      {
+        withCredentials: true,
+      });
       
-      if (response) {
-        toast.success("Login successful!");
+      if (response.status === 200) {
         router.push("/profile");
       }
     } catch (error) {
-      console.error("Login error:", error);
       toast.error(error.response?.data?.message || "Invalid credentials");
     } finally {
       setIsLoading(false);
@@ -55,7 +60,7 @@ export default function LoginForm() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4 dark:from-gray-900 dark:to-gray-800">
       <Card className="w-full max-w-md shadow-lg">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">
