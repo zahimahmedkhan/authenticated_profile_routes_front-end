@@ -1,10 +1,14 @@
+"use client"
 import Link from "next/link";
 import Image from "next/image";
 import { LayoutDashboard, Users, Search, Bell, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import chart from "../../public/chart.jpg";
+import { useState } from "react";
 
 export default function DashboardPage() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const activities = Array(5).fill({
     title: "New project created",
     description: "Project 'Dashboard Design' was created",
@@ -20,8 +24,16 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50 text-gray-800">
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-gray-500/50 bg-opacity-50 z-40 md:hidden backdrop-blur-sm"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <div className="hidden md:flex flex-col w-64 bg-white border-r rounded-lg border-gray-200 fixed h-full">
+      <div className={`${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 fixed md:relative z-50 md:z-auto flex flex-col w-64 bg-white border-r rounded-lg border-gray-200 h-full transition-transform duration-300 ease-in-out`}>
         <div className="flex items-center justify-center h-16 border-b rounded-lg border-gray-200 px-4">
           <h1 className="text-xl font-bold text-gray-500">Acme Inc.</h1>
         </div>
@@ -29,6 +41,7 @@ export default function DashboardPage() {
           <Link
             href="#"
             className="flex items-center px-4 py-3 text-sm font-medium text-white bg-gray-700 rounded-lg"
+            onClick={() => setIsSidebarOpen(false)}
           >
             <LayoutDashboard className="w-5 h-5 mr-3 rounded-lg" />
             Dashboard
@@ -36,6 +49,7 @@ export default function DashboardPage() {
           <Link
             href="/profile"
             className="flex items-center px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-100 rounded-lg"
+            onClick={() => setIsSidebarOpen(false)}
           >
             <Users className="w-5 h-5 mr-3" />
             User Management
@@ -44,17 +58,17 @@ export default function DashboardPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col md:ml-64">
+      <div className="flex-1 flex flex-col md:ml-0">
         {/* Top Navigation */}
         <header className="bg-white border-b rounded-lg border-gray-200 sticky top-0 z-30">
           <div className="flex items-center justify-between h-16 px-4">
             <div className="flex items-center rounded-lg">
-              <Link
-                href="#"
+              <button
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 className="md:hidden p-2 rounded-lg text-gray-500 hover:bg-gray-100 mr-2"
               >
                 <Menu className="w-6 h-6" />
-              </Link>
+              </button>
               <h1 className="text-lg font-semibold">Dashboard</h1>
             </div>
             <div className="flex items-center space-x-2 sm:space-x-4">

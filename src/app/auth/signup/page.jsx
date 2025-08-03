@@ -21,7 +21,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Eye, EyeOff, X } from "lucide-react";
-import { router } from "next/router";
+// import { router } from "next/router";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 3 characters"),
@@ -53,7 +53,10 @@ export default function SignupForm() {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        "https://profile-routes-backend.vercel.app/auth/signup",
+        [
+         "https://profile-routes-backend.vercel.app/auth/signup",
+          // "http://localhost:5000/auth/signup"
+        ],
         {
           firstName: values.firstName,
           lastName: values.lastName,

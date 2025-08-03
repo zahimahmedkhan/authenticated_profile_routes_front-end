@@ -41,7 +41,10 @@ export default function LoginForm() {
   const onSubmit = async (values) => {
     setIsLoading(true);
     try {
-      const response = await axios.post( "https://profile-routes-backend.vercel.app/auth/login",   {
+      const response = await axios.post( [
+       "https://profile-routes-backend.vercel.app/auth/login",
+        // "http://localhost:5000/auth/login"
+      ],   {
         email: values.email,
         password: values.password,
       },
@@ -148,13 +151,14 @@ export default function LoginForm() {
           </div>
 
           {/* Social Login Buttons */}
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 gap-2">
             <Button variant="outline" className = 'cursor-pointer' disabled={isLoading}>
               Google
             </Button>
             <Button variant="outline" className = 'cursor-pointer' disabled={isLoading}>
               GitHub
             </Button>
+            <Button className="cursor-pointer"><Link href="/">← Go Back</Link></Button>
           </div>
         </CardContent>
       </Card>
