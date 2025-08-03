@@ -55,7 +55,7 @@ export default function SignupForm() {
       const response = await axios.post(
         [
          "https://profile-routes-backend.vercel.app/auth/signup",
-          // "http://localhost:5000/auth/signup"
+          "http://localhost:5000/auth/signup"
         ],
         {
           firstName: values.firstName,
