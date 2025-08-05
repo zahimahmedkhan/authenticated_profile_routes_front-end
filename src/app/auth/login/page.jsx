@@ -43,7 +43,7 @@ export default function LoginForm() {
     try {
       const response = await axios.post( [
        "https://profile-routes-backend.vercel.app/auth/login",
-      ],   {
+      ],{
         email: values.email,
         password: values.password,
       },
@@ -51,7 +51,7 @@ export default function LoginForm() {
         withCredentials: true,
       });
       
-      if (response.status === 200) {
+      if (response.status === 204 || response.status === 200) {
         router.push("/profile");
       }
     } catch (error) {
