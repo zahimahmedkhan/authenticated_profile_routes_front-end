@@ -137,7 +137,6 @@ export default function LoginForm() {
             </Link>
           </div>
 
-          {/* Social Login Divider */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <span className="w-full border-t" />
@@ -149,7 +148,7 @@ export default function LoginForm() {
             </div>
           </div>
 
-          {/* Social Login Buttons */}
+
           <div className="grid grid-cols-1 gap-2">
             <Button variant="outline" className = 'cursor-pointer' disabled={isLoading}>
               Google

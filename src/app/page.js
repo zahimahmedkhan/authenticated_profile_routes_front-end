@@ -24,7 +24,6 @@ export default function DashboardPage() {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-50 text-gray-800">
-      {/* Mobile Sidebar Overlay */}
       {isSidebarOpen && (
         <div 
           className="fixed inset-0 bg-gray-500/50 bg-opacity-50 z-40 md:hidden backdrop-blur-sm"
@@ -32,7 +31,6 @@ export default function DashboardPage() {
         />
       )}
 
-      {/* Sidebar */}
       <div className={`${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 fixed md:relative z-50 md:z-auto flex flex-col w-64 bg-white border-r rounded-lg border-gray-200 h-full transition-transform duration-300 ease-in-out`}>
         <div className="flex items-center justify-center h-16 border-b rounded-lg border-gray-200 px-4">
           <h1 className="text-xl font-bold text-gray-500">Acme Inc.</h1>
@@ -57,9 +55,8 @@ export default function DashboardPage() {
         </nav>
       </div>
 
-      {/* Main Content */}
+
       <div className="flex-1 flex flex-col md:ml-0">
-        {/* Top Navigation */}
         <header className="bg-white border-b rounded-lg border-gray-200 sticky top-0 z-30">
           <div className="flex items-center justify-between h-16 px-4">
             <div className="flex items-center rounded-lg">
@@ -92,9 +89,7 @@ export default function DashboardPage() {
           </div>
         </header>
 
-        {/* Main Content Area */}
         <main className="flex-1 overflow-y-auto p-4">
-          {/* Mobile Search */}
           <div className="sm:hidden mb-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -106,9 +101,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Charts and Tables */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
-            {/* Main Chart */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 lg:col-span-2">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
                 <h2 className="text-lg font-semibold">Revenue Overview</h2>
@@ -129,7 +122,6 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Recent Activity */}
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
               <h2 className="text-lg font-semibold mb-4">Recent Activity</h2>
               <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -153,7 +145,6 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Recent Projects */}
           <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
               <h2 className="text-lg font-semibold">Recent Projects</h2>

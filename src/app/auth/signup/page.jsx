@@ -21,7 +21,6 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Eye, EyeOff, X } from "lucide-react";
-// import { router } from "next/router";
 
 const formSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 3 characters"),
@@ -73,7 +72,7 @@ export default function SignupForm() {
       if (!response.status === 200) {
         toast.error("Error creating account");
       } else {
-        router.push("/profile");
+        toast.success("Account created successfully");
       }
     } catch (error) {
       if (error.status === 409) {

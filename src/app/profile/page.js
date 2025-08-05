@@ -112,7 +112,6 @@ export default function ProfilePage() {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Sidebar */}
           <div className="w-full md:w-1/3 space-y-6">
             <Card>
               <CardContent className="pt-6">
@@ -195,7 +194,6 @@ export default function ProfilePage() {
             </Card>
           </div>
 
-          {/* Main Form */}
           <div className="w-full md:w-2/3 space-y-6">
             <Card>
               <CardHeader>
