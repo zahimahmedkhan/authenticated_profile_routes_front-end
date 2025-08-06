@@ -51,9 +51,9 @@
           withCredentials: true,
         });
         
-        router.push("/profile");
         if (response.status === 204 || response.status === 200) {
           toast.success("Login successful");
+          router.push("/signup");
         } else {
           toast.error("Login failed");
         }
