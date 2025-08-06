@@ -51,8 +51,11 @@
           withCredentials: true,
         });
         
+        router.push("/profile");
         if (response.status === 204 || response.status === 200) {
-          router.push("/profile");
+          toast.success("Login successful");
+        } else {
+          toast.error("Login failed");
         }
       } catch (error) {
         toast.error(error?.data?.message || "Invalid credentials");
