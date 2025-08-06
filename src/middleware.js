@@ -14,7 +14,8 @@ export function middleware(request) {
 
   // If user is not logged in and tries to access protected route, redirect to login
   if (isProtectedRoute && !token) {
-    return NextResponse.redirect(new URL('/auth/login', request.url));
+    // return NextResponse.redirect(new URL('/auth/login', request.url));
+    console.log("User is not logged in and tries to access protected route");
   }
 
   return NextResponse.next();
