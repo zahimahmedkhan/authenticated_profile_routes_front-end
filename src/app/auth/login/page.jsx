@@ -20,7 +20,6 @@
   } from "@/components/ui/form";
   import { Input } from "@/components/ui/input";
   import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-  import { Router } from "next/router";
 
   const formSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -42,9 +41,9 @@
     const onSubmit = async (values) => {
       setIsLoading(true);
       try {
-        const response = await axios.post( [
+        const response = await axios.post( 
         "https://profile-routes-backend.vercel.app/auth/login",
-        ],{
+        {
           email: values.email,
           password: values.password,
         },
@@ -53,7 +52,7 @@
         });
         
         if (response.status === 204 || response.status === 200) {
-          Router.push("/profile");
+          router.push("/profile");
         }
       } catch (error) {
         toast.error(error?.data?.message || "Invalid credentials");
