@@ -53,7 +53,7 @@
         
         if (response.status === 204 || response.status === 200) {
           toast.success("Login successful");
-          router.push("/signup");
+          router.push("/auth/signup");
         } else {
           toast.error("Login failed");
         }
